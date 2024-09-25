@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tools extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+    function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }
