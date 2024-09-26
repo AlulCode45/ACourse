@@ -15,4 +15,8 @@ class CourseParticipant extends Model
     {
         return $this->belongsTo(Course::class);
     }
+    function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
+    }
 }
