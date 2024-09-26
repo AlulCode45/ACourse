@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -20,13 +21,9 @@ class Course extends Model
     {
         return $this->hasMany(CoursePayment::class);
     }
-    function course_images(): HasMany
+    public function course_images(): HasMany
     {
         return $this->hasMany(CourseImage::class);
-    }
-    function course_tools(): HasMany
-    {
-        return $this->hasMany(CourseTool::class);
     }
     function course_skill(): HasMany
     {
@@ -35,5 +32,9 @@ class Course extends Model
     function course_benefit(): HasOne
     {
         return $this->hasOne(CourseBenefit::class);
+    }
+    public function course_tools(): BelongsToMany
+    {
+        return $this->belongsToMany(Tools::class, 'course_tools', 'course_id', 'tool_id');
     }
 }
